@@ -168,7 +168,7 @@ def run_ocr_in_chart(chart, pad=0, psm=PSM.SINGLE_LINE):
 
     for tbox in chart.texts:
         # adding a pad to original image. Some case in quartz corpus, the text touch the border.
-        x, y, w, h = ru.wrap_rect(u.ttoi(tbox.rect), (fh, fw), padx=pad, pady=pad)
+        x, y, w, h = ru.wrap_rect(u.ttoi(tbox.rect), fh, fw, padx=pad, pady=pad)
         x, y = x + fpad, y + fpad
 
         if w * h == 0:

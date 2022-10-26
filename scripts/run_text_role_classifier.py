@@ -39,7 +39,7 @@ from rev import Chart, chart_dataset
 
 
 def __classify(clf, chart, with_post=False, draw_debug=False, pad=0, save=False):
-    print clf.classify(chart, with_post, draw_debug, pad, save)
+    print(clf.classify(chart, with_post, draw_debug, pad, save))
 
 
 if __name__ == '__main__':
@@ -64,12 +64,12 @@ if __name__ == '__main__':
         from_bbs = int(args['--from_bbs'])
         with_post = args['--with_post']
         pad = int(args['--pad'])
-        print with_post
+        print(with_post)
 
         chart = Chart(image_name, text_from=from_bbs)
         text_clf = rev.text.TextClassifier('default')
         pred_types = text_clf.classify(chart, with_post, draw_debug, pad, save=True)
-        print pred_types
+        print(pred_types)
 
     if args['multiple']:
         chart_list = args['INPUT_LIST_TXT']

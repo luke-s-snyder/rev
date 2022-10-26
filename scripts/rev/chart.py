@@ -58,7 +58,7 @@ class Chart(object):
     @property
     def image(self):
         if self._image is None:
-            print
+            print()
             self._image = cv2.imread(self._fn, cv2.IMREAD_UNCHANGED)
             if self._image.dtype == 'uint16':
                 self._image = (self._image / 256.0).astype('uint8')
@@ -86,7 +86,7 @@ class Chart(object):
         fn = self._fn.replace('.png', self._prefix + '-mask.png')
         if not os.path.exists(fn) or force_to_create:
             h, w, _ = self.image.shape
-            mask = create_mask((h, w), self.texts)
+            mask = create_mask(h, w, self.texts)
             cv2.imwrite(fn, mask)
 
         return cv2.imread(fn, cv2.IMREAD_GRAYSCALE)
@@ -111,7 +111,7 @@ class Chart(object):
         save_texts(self.text_boxes, self.text_boxes_filename)
 
 
-def create_mask((h, w), texts):
+def create_mask(h, w, texts):
     mask = np.zeros((h, w), np.uint8)
     for t in texts:
         cv2.rectangle(mask, u.ttoi(t.p1), u.ttoi(t.p2), 255, thickness=-1)
